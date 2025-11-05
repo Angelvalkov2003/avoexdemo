@@ -32,32 +32,35 @@ export default function ServiceModal({
     <div
       className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
       onClick={onClose}
+      style={{ fontFamily: '"Cy Grotesk Grand", sans-serif' }}
     >
       <div
-        className="bg-white rounded-2xl max-w-2xl w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto"
+        className="bg-white rounded-lg max-w-2xl w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
+        style={{ backgroundColor: '#fffaea' }}
       >
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 text-gray-500 hover:text-gray-900 text-2xl transition-colors"
+          className="absolute top-6 right-6 text-black hover:text-gray-700 text-3xl transition-colors font-light leading-none"
+          aria-label="Close modal"
         >
           ×
         </button>
 
-        <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+        <h2 className="text-4xl font-bold mb-4 text-black">
           {service.title}
         </h2>
 
-        <p className="text-lg text-gray-600 mb-6">{service.description}</p>
+        <p className="text-lg text-black mb-6">{service.description}</p>
 
         <div className="mb-6">
-          <h3 className="text-xl font-semibold text-gray-900 mb-3">
+          <h3 className="text-xl font-semibold text-black mb-3">
             What's included:
           </h3>
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {service.details.map((detail: string, index: number) => (
-              <li key={index} className="flex items-start text-gray-700">
-                <span className="text-green-500 mr-3 mt-1">✓</span>
+              <li key={index} className="flex items-start text-black">
+                <span className="text-black mr-3 mt-1 font-bold">✓</span>
                 <span>{detail}</span>
               </li>
             ))}
@@ -65,20 +68,20 @@ export default function ServiceModal({
         </div>
 
         <div className="mb-6">
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">
+          <h3 className="text-xl font-semibold text-black mb-2">
             Ideal for:
           </h3>
-          <p className="text-gray-600">{service.ideal}</p>
+          <p className="text-black">{service.ideal}</p>
         </div>
 
-        <div className="border-t pt-6">
+        <div className="border-t border-gray-300 pt-6">
           <a
             href="#contact"
             onClick={(e) => {
               handleSmoothScroll(e, "#contact");
               onClose();
             }}
-            className="inline-block mt-4 px-6 py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-full hover:scale-105 transition-transform"
+            className="inline-block px-8 py-3 bg-white rounded-full font-semibold text-lg text-black hover:bg-gray-50 transition-colors shadow-sm hover:shadow-md"
           >
             Get Started
           </a>
