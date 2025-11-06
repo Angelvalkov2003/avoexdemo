@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script"; // ✅ добави това
+import Script from "next/script";
 import "./globals.css";
 import LoadingScreen from "./components/LoadingScreen";
 
@@ -106,7 +106,16 @@ export default function RootLayout({
             gtag('config', 'G-XLW40HKPCD');
           `}
         </Script>
+
+        {/* ✅ CookieYes Banner (GDPR Consent) */}
+        <Script
+          id="cookieyes"
+          type="text/javascript"
+          src="https://cdn-cookieyes.com/client_data/983abe5f4f4ae8da2d9ee5e4/script.js"
+          strategy="afterInteractive"
+        />
       </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
