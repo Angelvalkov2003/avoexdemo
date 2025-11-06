@@ -93,27 +93,41 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* ✅ Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XLW40HKPCD"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XLW40HKPCD');
-          `}
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XLW40HKPCD');
+    `}
         </Script>
 
-        {/* ✅ CookieYes Banner (GDPR Consent) */}
         <Script
           id="cookieyes"
           type="text/javascript"
           src="https://cdn-cookieyes.com/client_data/983abe5f4f4ae8da2d9ee5e4/script.js"
           strategy="afterInteractive"
         />
+
+        <Script id="structured-data" type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Avoex",
+            url: "https://avoex.vercel.app",
+            logo: "https://avoex.vercel.app/logo.png",
+            sameAs: [
+              "https://www.instagram.com/avoex",
+              "https://www.linkedin.com/company/avoex",
+            ],
+          })}
+        </Script>
+
+        <meta name="theme-color" content="#6b4eff" />
       </head>
 
       <body
