@@ -222,12 +222,30 @@ export default function ContactForm() {
         body: JSON.stringify(contactForm),
       });
 
-      const data = await response.json();
+      // Check if response has content before parsing JSON
+      const contentType = response.headers.get("content-type");
+      let data = null;
+
+      if (contentType && contentType.includes("application/json")) {
+        const text = await response.text();
+        if (text) {
+          try {
+            data = JSON.parse(text);
+          } catch (parseError) {
+            console.error("Error parsing JSON:", parseError);
+            setSubmitMessage({
+              type: "error",
+              text: "An error occurred while processing the response.",
+            });
+            return;
+          }
+        }
+      }
 
       if (response.ok) {
         setSubmitMessage({
           type: "success",
-          text: "Email sent successfully",
+          text: data?.message || "Email sent successfully",
         });
         // Reset form
         setContactForm({
@@ -239,7 +257,7 @@ export default function ContactForm() {
       } else {
         setSubmitMessage({
           type: "error",
-          text: data.message || "An error occurred while sending the request.",
+          text: data?.message || "An error occurred while sending the request.",
         });
       }
     } catch (error) {
@@ -415,7 +433,7 @@ export default function ContactForm() {
             onChange={(e) =>
               setContactForm({ ...contactForm, budget: e.target.value })
             }
-            placeholder="1000$"
+            placeholder="The amount of money in $ or €"
           />
         </div>
 
