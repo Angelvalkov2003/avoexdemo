@@ -3,37 +3,37 @@
 const processSteps = [
   {
     id: 1,
-    title: "Book Consultation",
+    title: "Initial Meeting",
     description:
-      "Schedule a free consultation to share your project idea and receive an initial price range.",
-    icon: "📅",
+      "We start with a short online or in-person meeting to understand your goals, preferences, and desired style. Together we define the website’s structure, content, and main features.",
+    icon: "🤝",
   },
   {
     id: 2,
-    title: "Clarification Meeting",
+    title: "Design Concept",
     description:
-      "We discuss all details, features, and design preferences. Once everything is clear, we prepare a final project proposal.",
-    icon: "💬",
+      "Our design team creates the first visual concept of your website — layout, colors, and overall atmosphere. You’ll receive a preview and can share your feedback before we continue.",
+    icon: "🎨",
   },
   {
     id: 3,
-    title: "Deposit & Project Start",
+    title: "Development Phase",
     description:
-      "After approval of the proposal, a 40% deposit is made to secure the project. We then begin development.",
-    icon: "📝",
-  },
-  {
-    id: 4,
-    title: "Development & Demo",
-    description:
-      "We build your website using modern technologies. You receive a demo version and can request revisions and adjustments.",
+      "Once the design is approved, our developers bring it to life. We build a responsive, fast, and optimized website using modern technologies tailored to your business needs.",
     icon: "💻",
   },
   {
-    id: 5,
-    title: "Final Payment & Launch",
+    id: 4,
+    title: "Demo & Feedback",
     description:
-      "Once the final version is approved, the remaining 60% is paid. We launch your website and provide hosting & support options.",
+      "We present a live demo version of your website. Together we review every page, discuss possible changes, and make adjustments until you’re 100% satisfied.",
+    icon: "🧪",
+  },
+  {
+    id: 5,
+    title: "Launch & Ongoing Support",
+    description:
+      "After final approval, we launch your website to the world 🌍. We also provide hosting, maintenance, and continuous support to keep everything running smoothly.",
     icon: "🚀",
   },
 ];
