@@ -53,8 +53,13 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: [
+      { url: "/photo1.png", sizes: "32x32", type: "image/png" },
+      { url: "/photo1.png", sizes: "192x192", type: "image/png" },
+      { url: "/photo1.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/photo1.png",
+    shortcut: "/photo1.png",
   },
   openGraph: {
     type: "website",
@@ -128,6 +133,12 @@ export default function RootLayout({
         </Script>
 
         <meta name="theme-color" content="#6b4eff" />
+        {/* Favicon declarations for Google Search Results */}
+        <link rel="icon" href="/photo1.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/photo1.png" type="image/png" sizes="192x192" />
+        <link rel="icon" href="/photo1.png" type="image/png" sizes="512x512" />
+        <link rel="shortcut icon" href="/photo1.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/photo1.png" />
       </head>
 
       <body
