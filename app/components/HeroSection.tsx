@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const features = [
   {
@@ -60,9 +61,19 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="py-20 px-6 bg-[url('/background.webp')] bg-cover bg-center bg-no-repeat"
+      className="py-20 px-6 relative overflow-hidden"
     >
-      <div className="container mx-auto max-w-4xl text-center">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/background.webp"
+          alt=""
+          fill
+          className="object-cover"
+          priority
+          quality={85}
+        />
+      </div>
+      <div className="container mx-auto max-w-4xl text-center relative z-10">
         <h1 className="text-5xl md:text-6xl font-bold text-black mb-12 drop-shadow-[0_0_30px_rgba(0,0,0,0.4),0_0_50px_rgba(0,0,0,0.2),3px_3px_6px_rgba(255,255,255,0.2)]">
           Web Design & Digital Marketing That Drives Results
         </h1>

@@ -127,16 +127,22 @@ export default function Home() {
 
       <section
         id="process"
-        className="py-20 px-6"
+        className="py-20 px-6 relative overflow-hidden"
         style={{
-          backgroundImage: "url(/background2.webp)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
           fontFamily: '"Cy Grotesk Grand", sans-serif',
         }}
       >
-        <div className="container mx-auto max-w-6xl">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/background2.webp"
+            alt=""
+            fill
+            className="object-cover"
+            loading="lazy"
+            quality={85}
+          />
+        </div>
+        <div className="container mx-auto max-w-6xl relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
               Our Work Process
@@ -191,6 +197,7 @@ export default function Home() {
                   height={500}
                   className="w-full h-full object-cover object-center rounded-full shadow-lg"
                   loading="lazy"
+                  quality={85}
                 />
               </div>
             </div>
@@ -273,16 +280,22 @@ export default function Home() {
 
       <section
         id="contact"
-        className="py-20 px-6"
+        className="py-20 px-6 relative overflow-hidden"
         style={{
-          backgroundImage: "url(/background3.webp)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
           fontFamily: '"Cy Grotesk Grand", sans-serif',
         }}
       >
-        <div className="container mx-auto max-w-2xl">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/background3.webp"
+            alt=""
+            fill
+            className="object-cover"
+            loading="lazy"
+            quality={85}
+          />
+        </div>
+        <div className="container mx-auto max-w-2xl relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-bold mb-6 text-black">
               Contact Us

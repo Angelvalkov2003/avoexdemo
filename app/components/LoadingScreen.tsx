@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function LoadingScreen({
   children,
@@ -25,14 +26,16 @@ export default function LoadingScreen({
           className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500 ${
             fading ? "opacity-0" : "opacity-100"
           }`}
-          style={{
-            backgroundImage: "url('/background3.webp')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
         >
-          <div className="text-white text-4xl font-bold">Avoex</div>
+          <Image
+            src="/background3.webp"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+            quality={85}
+          />
+          <div className="relative z-10 text-white text-4xl font-bold">Avoex</div>
         </div>
       )}
       <div
