@@ -70,7 +70,8 @@ export default function HeroSection() {
           fill
           className="object-cover"
           priority
-          quality={85}
+          quality={75}
+          sizes="100vw"
         />
       </div>
       <div className="container mx-auto max-w-4xl text-center relative z-10">

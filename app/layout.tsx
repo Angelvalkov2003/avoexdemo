@@ -7,11 +7,15 @@ import LoadingScreen from "./components/LoadingScreen";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -135,6 +139,13 @@ export default function RootLayout({
         <meta name="theme-color" content="#6b4eff" />
         {/* Canonical URL */}
         <link rel="canonical" href="https://avoex.vercel.app/" />
+        {/* Preload critical hero image for LCP optimization */}
+        <link
+          rel="preload"
+          href="/background.webp"
+          as="image"
+          type="image/webp"
+        />
         {/* Favicon declarations for Google Search Results */}
         <link rel="icon" href="/logo.png" type="image/png" sizes="32x32" />
         <link rel="icon" href="/logo.png" type="image/png" sizes="192x192" />

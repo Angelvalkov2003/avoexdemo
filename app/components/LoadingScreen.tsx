@@ -11,11 +11,12 @@ export default function LoadingScreen({
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
+    // Reduced delay for faster LCP - show content sooner
     const timer = setTimeout(() => {
       setFading(true);
       // След fade out анимацията, скриваме loading screen-а
-      setTimeout(() => setLoading(false), 500);
-    }, 1000);
+      setTimeout(() => setLoading(false), 300);
+    }, 300);
     return () => clearTimeout(timer);
   }, []);
 
@@ -32,8 +33,9 @@ export default function LoadingScreen({
             alt=""
             fill
             className="object-cover"
-            priority
-            quality={85}
+            loading="lazy"
+            quality={75}
+            sizes="100vw"
           />
           <div className="relative z-10 text-white text-4xl font-bold">Avoex</div>
         </div>
