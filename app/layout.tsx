@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     images: ["/logo.png"],
   },
   alternates: {
-    canonical: "/",
+    canonical: "https://avoex.vercel.app/",
   },
 };
 
@@ -133,6 +133,8 @@ export default function RootLayout({
         </Script>
 
         <meta name="theme-color" content="#6b4eff" />
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://avoex.vercel.app/" />
         {/* Favicon declarations for Google Search Results */}
         <link rel="icon" href="/logo.png" type="image/png" sizes="32x32" />
         <link rel="icon" href="/logo.png" type="image/png" sizes="192x192" />
