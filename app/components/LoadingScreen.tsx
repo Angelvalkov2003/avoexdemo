@@ -26,7 +26,7 @@ export default function LoadingScreen({
             fading ? "opacity-0" : "opacity-100"
           }`}
           style={{
-            backgroundImage: "url('/background3.png')",
+            backgroundImage: "url('/background3.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",

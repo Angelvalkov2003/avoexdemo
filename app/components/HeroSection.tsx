@@ -60,7 +60,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="py-20 px-6 bg-[url('/background.png')] bg-cover bg-center bg-no-repeat"
+      className="py-20 px-6 bg-[url('/background.webp')] bg-cover bg-center bg-no-repeat"
     >
       <div className="container mx-auto max-w-4xl text-center">
         <h1 className="text-5xl md:text-6xl font-bold text-black mb-12 drop-shadow-[0_0_30px_rgba(0,0,0,0.4),0_0_50px_rgba(0,0,0,0.2),3px_3px_6px_rgba(255,255,255,0.2)]">

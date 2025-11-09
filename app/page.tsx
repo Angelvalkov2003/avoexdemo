@@ -129,7 +129,7 @@ export default function Home() {
         id="process"
         className="py-20 px-6"
         style={{
-          backgroundImage: "url(/background2.png)",
+          backgroundImage: "url(/background2.webp)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -185,7 +185,7 @@ export default function Home() {
             <div className="flex justify-center md:justify-end">
               <div className="relative w-full max-w-md aspect-square">
                 <Image
-                  src="/photo1.png"
+                  src="/photo1.webp"
                   alt="Avoex - Professional Website Design and Marketing Agency"
                   width={500}
                   height={500}
@@ -275,7 +275,7 @@ export default function Home() {
         id="contact"
         className="py-20 px-6"
         style={{
-          backgroundImage: "url(/background3.png)",
+          backgroundImage: "url(/background3.webp)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
