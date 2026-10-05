@@ -1,6 +1,6 @@
 import type { Dictionary } from "../i18n/dictionaries";
 import { ArrowUpRight, Check, GitHub, MapPin } from "./icons";
-import ProjectMock from "./ProjectMock";
+import Image from "next/image";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 
@@ -14,9 +14,22 @@ export default function Work({ t }: { t: Dictionary }) {
         <div className="mt-16 space-y-6">
           {t.work.featured.map((p, i) => (
             <Reveal key={p.id}>
-              <article className="grid gap-8 rounded-[28px] border border-white/10 bg-white/[0.03] p-5 sm:p-8 lg:grid-cols-2 lg:gap-12 lg:p-10">
-                <div className={i % 2 ? "lg:order-2" : ""}>
-                  <ProjectMock kind={p.mock} />
+              <article className="group grid gap-8 rounded-[28px] border border-white/10 bg-white/[0.03] p-5 sm:p-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12 lg:p-10">
+                <div
+                  className={`relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-2xl ring-1 ring-white/10 lg:aspect-[4/3] lg:self-start ${
+                    i % 2 ? "lg:order-2" : ""
+                  }`}
+                  style={{ background: p.logo.background }}
+                >
+                  <Image
+                    src={p.logo.src}
+                    alt={`${p.name} logo`}
+                    width={p.logo.width}
+                    height={p.logo.height}
+                    unoptimized
+                    style={{ width: Math.round((Math.min(112, p.logo.height) * p.logo.width) / p.logo.height) }}
+                    className="h-auto max-w-[65%] object-contain transition-transform duration-700 group-hover:scale-105"
+                  />
                 </div>
 
                 <div className="flex flex-col">

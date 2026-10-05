@@ -1,7 +1,12 @@
 export type Locale = "en" | "bg";
 
 export type ServiceId = "web" | "software" | "ai" | "brand";
-export type MockKind = "platform" | "dashboard" | "newsroom" | "components";
+export interface ProjectLogo {
+  src: string;
+  background: string;
+  width: number;
+  height: number;
+}
 
 export interface FeaturedProject {
   id: string;
@@ -15,7 +20,7 @@ export interface FeaturedProject {
   url: string;
   urlLabel: string;
   linkKind: "site" | "code";
-  mock: MockKind;
+  logo: ProjectLogo;
   status?: string;
 }
 
@@ -87,7 +92,8 @@ export interface Dictionary {
     eyebrow: string;
     title: string;
     subtitle: string;
-    steps: { title: string; description: string }[];
+    steps: { title: string; description: string; meta: string }[];
+    guarantees: string[];
   };
   faq: { eyebrow: string; title: string; items: { q: string; a: string }[] };
   contact: {
@@ -131,10 +137,18 @@ const SITE_URLS = {
   pureSpace: "https://purespace.website/",
 };
 
+const LOGOS: Record<string, ProjectLogo> = {
+  brushPast: { src: "/logos/brushpast-trimmed.png", background: "#cba678", width: 251, height: 102 },
+  askemo: { src: "/logos/askemo.webp", background: "#ffffff", width: 600, height: 315 },
+  punto: { src: "/logos/12punto-trimmed.png", background: "#272727", width: 400, height: 112 },
+  axiom: { src: "/logos/axiom-trimmed.png", background: "#ffffff", width: 186, height: 152 },
+};
+
 const PHOTOS = {
-  angel: "/people/angel-portrait.jpg",
-  milenchev: "/people/GeorgiMilenchev.jpg",
+  angel: "/people/angel.png",
+  milenchev: "/people/GeorgiMilenchev.png",
   kerkelov: "/people/Georgikerkelov.jpg",
+  stiliyan: "/people/stiliyanStefanov.png",
 };
 
 export const en: Dictionary = {
@@ -164,14 +178,14 @@ export const en: Dictionary = {
     titleHighlight: "AI automations",
     titleEnd: "that grow your business.",
     subtitle:
-      "We're a senior team of three engineers building digital products for companies in London, Amsterdam, Istanbul and Sofia — from brand-new websites to complex platforms and AI pipelines that run on their own.",
+      "We build digital products for companies in London, Amsterdam, Istanbul and Sofia — from brand-new websites to complex platforms and AI pipelines that run on their own.",
     primary: "Book a free consultation",
     secondary: "See our work",
     stats: [
       { value: "2024", label: "Founded" },
       { value: "20+", label: "Projects delivered" },
       { value: "4", label: "Countries served" },
-      { value: "17+", label: "Years of combined experience" },
+      { value: "24h", label: "Response time" },
     ],
   },
   clients: { label: "Trusted by teams across Europe" },
@@ -258,7 +272,7 @@ export const en: Dictionary = {
         url: SITE_URLS.brushPast,
         urlLabel: "brush-past.vercel.app",
         linkKind: "site",
-        mock: "platform",
+        logo: LOGOS.brushPast,
         status: "Website in final stage",
       },
       {
@@ -280,7 +294,7 @@ export const en: Dictionary = {
         url: SITE_URLS.askemo,
         urlLabel: "askemo.nl",
         linkKind: "site",
-        mock: "dashboard",
+        logo: LOGOS.askemo,
       },
       {
         id: "12punto",
@@ -301,7 +315,7 @@ export const en: Dictionary = {
         url: SITE_URLS.punto,
         urlLabel: "12punto.com.tr",
         linkKind: "site",
-        mock: "newsroom",
+        logo: LOGOS.punto,
       },
       {
         id: "axiom",
@@ -322,7 +336,7 @@ export const en: Dictionary = {
         url: SITE_URLS.axiom,
         urlLabel: "github.com/Milenchev/axiom-design-system",
         linkKind: "code",
-        mock: "components",
+        logo: LOGOS.axiom,
       },
     ],
     moreTitle: "More projects",
@@ -409,9 +423,9 @@ export const en: Dictionary = {
   },
   team: {
     eyebrow: "The team",
-    title: "Three engineers. One standard.",
+    title: "The people behind your product.",
     subtitle:
-      "Together we cover the full product lifecycle — strategy, architecture, design, frontend, backend, QA, security and cloud.",
+      "A senior team that covers the full product lifecycle — strategy, architecture, design, frontend, backend, data & AI, QA, security and cloud.",
     experienceLabel: "experience",
     members: [
       {
@@ -436,44 +450,60 @@ export const en: Dictionary = {
         name: "Georgi Kerkelov",
         role: "Software Engineer · QA, Security & Cloud",
         photo: PHOTOS.kerkelov,
-        experience: "4+ years",
+        experience: "9+ years",
         education: ["BSc Computer & Software Engineering"],
         bio: "Georgi makes sure everything we ship is reliable and secure. He drives QA and test automation, cybersecurity reviews and cloud infrastructure, so every release is stable on launch day and at scale.",
         skills: ["QA & test automation", "Cybersecurity", "Cloud", "CI/CD"],
+      },
+      {
+        name: "Stiliyan Stefanov",
+        role: "Data & AI Engineer",
+        photo: PHOTOS.stiliyan,
+        experience: "5+ years",
+        education: ["MSc Data Science, the Netherlands"],
+        bio: "Stiliyan owns everything data. He designs databases and data pipelines, builds AI and LLM-powered features, and turns raw numbers into analytics and dashboards that drive real decisions.",
+        skills: ["Databases & SQL", "AI & LLMs", "Data analytics", "Python", "Data pipelines"],
       },
     ],
   },
   process: {
     eyebrow: "How we work",
-    title: "From idea to launch in five clear steps.",
-    subtitle: "Transparent at every stage — you see progress every week, not just at the end.",
+    title: "A proven path from idea to launch.",
+    subtitle:
+      "Five focused stages, fixed scope and weekly demos — you always know where your project stands, what's next and what it costs.",
     steps: [
       {
-        title: "Discovery call",
+        title: "Discovery",
+        meta: "Free · 30 min",
         description:
-          "A free 30-minute call to understand your business, goals and audience — and whether we're the right fit.",
+          "We dig into your business, goals and users to define what success looks like — and whether we're the right partner.",
       },
       {
         title: "Strategy & proposal",
+        meta: "Within 48 hours",
         description:
-          "We map the scope, features and architecture, then send a fixed proposal with timeline and price.",
+          "Scope, features, architecture and tech stack mapped out in a fixed proposal with a clear timeline and price.",
       },
       {
-        title: "Design",
+        title: "UX & design",
+        meta: "Interactive prototype",
         description:
-          "Wireframes and a visual concept tailored to your brand. You review, we refine until it feels right.",
+          "Wireframes, user flows and a high-fidelity design in your brand — refined with you before a line of code is written.",
       },
       {
-        title: "Build & weekly demos",
+        title: "Engineering",
+        meta: "Weekly demos",
         description:
-          "Our engineers build with modern, scalable technology and show you working progress every week.",
+          "Agile sprints with modern, scalable technology, automated testing and a working demo of real progress every week.",
       },
       {
         title: "Launch & growth",
+        meta: "Ongoing support",
         description:
-          "We test, launch and monitor — then keep improving with support, SEO and new features.",
+          "Security checks, performance tuning and a smooth go-live — then monitoring, SEO and new features as you grow.",
       },
     ],
+    guarantees: ["Fixed price, no surprises", "Weekly demos", "You own the code & IP", "Support after launch"],
   },
   faq: {
     eyebrow: "FAQ",
@@ -571,14 +601,14 @@ export const bg: Dictionary = {
     titleHighlight: "AI автоматизации",
     titleEnd: "които развиват бизнеса ви.",
     subtitle:
-      "Ние сме екип от трима опитни инженери, които създават дигитални продукти за компании в Лондон, Амстердам, Истанбул и София — от нови уебсайтове до сложни платформи и AI процеси, които работят сами.",
+      "Създаваме дигитални продукти за компании в Лондон, Амстердам, Истанбул и София — от нови уебсайтове до сложни платформи и AI процеси, които работят сами.",
     primary: "Безплатна консултация",
     secondary: "Вижте проектите ни",
     stats: [
       { value: "2024", label: "Основана" },
       { value: "20+", label: "Завършени проекта" },
       { value: "4", label: "Държави с клиенти" },
-      { value: "17+", label: "Години общ опит" },
+      { value: "24 ч.", label: "Време за отговор" },
     ],
   },
   clients: { label: "Доверяват ни се екипи от цяла Европа" },
@@ -665,7 +695,7 @@ export const bg: Dictionary = {
         url: SITE_URLS.brushPast,
         urlLabel: "brush-past.vercel.app",
         linkKind: "site",
-        mock: "platform",
+        logo: LOGOS.brushPast,
         status: "Сайтът е в довършителен етап",
       },
       {
@@ -687,7 +717,7 @@ export const bg: Dictionary = {
         url: SITE_URLS.askemo,
         urlLabel: "askemo.nl",
         linkKind: "site",
-        mock: "dashboard",
+        logo: LOGOS.askemo,
       },
       {
         id: "12punto",
@@ -708,7 +738,7 @@ export const bg: Dictionary = {
         url: SITE_URLS.punto,
         urlLabel: "12punto.com.tr",
         linkKind: "site",
-        mock: "newsroom",
+        logo: LOGOS.punto,
       },
       {
         id: "axiom",
@@ -729,7 +759,7 @@ export const bg: Dictionary = {
         url: SITE_URLS.axiom,
         urlLabel: "github.com/Milenchev/axiom-design-system",
         linkKind: "code",
-        mock: "components",
+        logo: LOGOS.axiom,
       },
     ],
     moreTitle: "Още проекти",
@@ -815,9 +845,9 @@ export const bg: Dictionary = {
   },
   team: {
     eyebrow: "Екипът",
-    title: "Трима инженери. Един стандарт.",
+    title: "Хората зад вашия продукт.",
     subtitle:
-      "Заедно покриваме целия живот на продукта — стратегия, архитектура, дизайн, frontend, backend, QA, сигурност и облак.",
+      "Опитен екип, който покрива целия живот на продукта — стратегия, архитектура, дизайн, frontend, backend, данни и AI, QA, сигурност и облак.",
     experienceLabel: "опит",
     members: [
       {
@@ -842,44 +872,60 @@ export const bg: Dictionary = {
         name: "Георги Керкелов",
         role: "Софтуерен инженер · QA, сигурност и облак",
         photo: PHOTOS.kerkelov,
-        experience: "4+ години",
+        experience: "9+ години",
         education: ["Бакалавър, Компютърно и софтуерно инженерство"],
         bio: "Георги гарантира, че всичко, което пускаме, е надеждно и сигурно. Отговаря за QA и автоматизираните тестове, прегледите по киберсигурност и облачната инфраструктура — за да е всяка версия стабилна още от първия ден.",
         skills: ["QA и автотестове", "Киберсигурност", "Облак", "CI/CD"],
+      },
+      {
+        name: "Стилиян Стефанов",
+        role: "Data и AI инженер",
+        photo: PHOTOS.stiliyan,
+        experience: "5+ години",
+        education: ["Магистър, Data Science — Нидерландия"],
+        bio: "Стилиян отговаря за всичко, свързано с данни. Проектира бази данни и процеси за обработка на данни, разработва AI и LLM функционалности и превръща суровите числа в анализи и табла, по които се взимат реални решения.",
+        skills: ["Бази данни и SQL", "AI и LLM", "Анализ на данни", "Python", "Data pipelines"],
       },
     ],
   },
   process: {
     eyebrow: "Как работим",
-    title: "От идея до старт в пет ясни стъпки.",
-    subtitle: "Прозрачност на всеки етап — виждате напредъка всяка седмица, не само накрая.",
+    title: "Доказан път от идеята до старта.",
+    subtitle:
+      "Пет ясни етапа, фиксиран обхват и седмични демота — винаги знаете докъде е проектът, какво следва и колко струва.",
     steps: [
       {
-        title: "Първоначален разговор",
+        title: "Откриване",
+        meta: "Безплатно · 30 мин",
         description:
-          "Безплатен 30-минутен разговор, за да разберем бизнеса, целите и аудиторията ви — и дали сме подходящи един за друг.",
+          "Вникваме в бизнеса, целите и потребителите ви, за да определим как изглежда успехът — и дали сме правилният партньор.",
       },
       {
         title: "Стратегия и оферта",
+        meta: "До 48 часа",
         description:
-          "Определяме обхвата, функционалностите и архитектурата и изпращаме фиксирана оферта със срок и цена.",
+          "Обхват, функционалности, архитектура и технологии, описани във фиксирана оферта с ясен срок и цена.",
       },
       {
-        title: "Дизайн",
+        title: "UX и дизайн",
+        meta: "Интерактивен прототип",
         description:
-          "Wireframes и визуална концепция, съобразени с бранда ви. Вие давате обратна връзка, ние доизпипваме.",
+          "Wireframes, потребителски сценарии и детайлен дизайн във вашия бранд — изгладени заедно с вас, преди да напишем и ред код.",
       },
       {
-        title: "Разработка и седмични демота",
+        title: "Разработка",
+        meta: "Седмични демота",
         description:
-          "Инженерите ни разработват с модерни и мащабируеми технологии и ви показват работещ напредък всяка седмица.",
+          "Гъвкави спринтове с модерни и мащабируеми технологии, автоматизирани тестове и работещо демо на реалния напредък всяка седмица.",
       },
       {
         title: "Старт и развитие",
+        meta: "Постоянна поддръжка",
         description:
-          "Тестваме, пускаме и наблюдаваме — след което продължаваме с поддръжка, SEO и нови функции.",
+          "Проверки за сигурност, оптимизация на скоростта и гладко пускане — след това наблюдение, SEO и нови функции, докато растете.",
       },
     ],
+    guarantees: ["Фиксирана цена без изненади", "Седмични демота", "Кодът и правата са ваши", "Поддръжка след старта"],
   },
   faq: {
     eyebrow: "Въпроси",
