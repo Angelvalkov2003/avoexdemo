@@ -2,9 +2,10 @@ import type { Dictionary } from "../i18n/dictionaries";
 import { ArrowRight } from "./icons";
 
 const CLIENTS = [
+  "12punto",
   "Brush Past",
   "Askemo",
-  "12punto",
+  "TDR",
   "Paperok",
   "Nova Art Space",
   "Arthouse 94",

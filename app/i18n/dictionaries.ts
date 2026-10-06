@@ -126,6 +126,7 @@ const SITE_URLS = {
   brushPast: "https://brush-past.vercel.app/",
   askemo: "https://askemo.nl/",
   punto: "https://12punto.com.tr/",
+  tdr: "https://tdrbg.net/",
   axiom: "https://github.com/Milenchev/axiom-design-system",
   paperok: "https://www.paperok.bg/",
   nova: "https://novaartspace.bg/",
@@ -141,6 +142,7 @@ const LOGOS: Record<string, ProjectLogo> = {
   brushPast: { src: "/logos/brushpast-trimmed.png", background: "#cba678", width: 251, height: 102 },
   askemo: { src: "/logos/askemo.webp", background: "#ffffff", width: 600, height: 315 },
   punto: { src: "/logos/12punto-trimmed.png", background: "#272727", width: 400, height: 112 },
+  tdr: { src: "/logos/tdr-trimmed.png", background: "#ffffff", width: 325, height: 300 },
   axiom: { src: "/logos/axiom-trimmed.png", background: "#ffffff", width: 186, height: 152 },
 };
 
@@ -254,6 +256,27 @@ export const en: Dictionary = {
     viewCode: "View on GitHub",
     featured: [
       {
+        id: "12punto",
+        name: "12punto",
+        location: "Istanbul, Turkey",
+        category: "AI automations · Media",
+        summary:
+          "One of the oldest and largest news publishers in Turkey, with a newsroom that never sleeps.",
+        description:
+          "We design and run a family of AI automations for their editorial team: pipelines that generate news articles from incoming sources, create matching images, and publish everything automatically — with human review exactly where it matters.",
+        highlights: [
+          "AI-generated news articles at scale",
+          "Automatic publishing to the website & channels",
+          "AI image generation for every story",
+          "Editorial review & quality guardrails",
+        ],
+        tags: ["LLMs", "Automation", "Image generation", "Publishing"],
+        url: SITE_URLS.punto,
+        urlLabel: "12punto.com.tr",
+        linkKind: "site",
+        logo: LOGOS.punto,
+      },
+      {
         id: "brush-past",
         name: "Brush Past",
         location: "London, UK",
@@ -297,25 +320,26 @@ export const en: Dictionary = {
         logo: LOGOS.askemo,
       },
       {
-        id: "12punto",
-        name: "12punto",
-        location: "Istanbul, Turkey",
-        category: "AI automations · Media",
+        id: "tdr",
+        name: "Telephone Domain Register",
+        location: "Bulgaria",
+        category: "Telecom · Cybersecurity · Automation",
         summary:
-          "One of the oldest and largest news publishers in Turkey, with a newsroom that never sleeps.",
+          "A large-scale telecom and cybersecurity project building a full internet ecosystem whose applications run over the telephone network — the foundation of TDR's Safe Internet.",
         description:
-          "We design and run a family of AI automations for their editorial team: pipelines that generate news articles from incoming sources, create matching images, and publish everything automatically — with human review exactly where it matters.",
+          "We work on a complex network and on the cybersecurity of the telephone network itself: building the entire internet system that lets applications run through the telephone network, strengthening its security, and creating automation systems and web apps for their Safe Internet. At pre-release stage, the project has already been valued at over €4 million.",
         highlights: [
-          "AI-generated news articles at scale",
-          "Automatic publishing to the website & channels",
-          "AI image generation for every story",
-          "Editorial review & quality guardrails",
+          "Complex network architecture over the telephone network",
+          "Cybersecurity for telecom infrastructure",
+          "Full internet system with apps running via the phone network",
+          "Automation systems & web apps for Safe Internet",
         ],
-        tags: ["LLMs", "Automation", "Image generation", "Publishing"],
-        url: SITE_URLS.punto,
-        urlLabel: "12punto.com.tr",
+        tags: ["Telecom", "Networking", "Cybersecurity", "Automation", "Web apps"],
+        url: SITE_URLS.tdr,
+        urlLabel: "tdrbg.net",
         linkKind: "site",
-        logo: LOGOS.punto,
+        logo: LOGOS.tdr,
+        status: "Pre-release · valued at €4M+",
       },
       {
         id: "axiom",
@@ -677,6 +701,27 @@ export const bg: Dictionary = {
     viewCode: "Вижте в GitHub",
     featured: [
       {
+        id: "12punto",
+        name: "12punto",
+        location: "Истанбул, Турция",
+        category: "AI автоматизации · Медия",
+        summary:
+          "Едно от най-старите и най-големи новинарски издания в Турция, с редакция, която никога не спира.",
+        description:
+          "Проектираме и поддържаме редица AI автоматизации за редакцията им: процеси, които генерират новинарски статии от входящи източници, създават подходящи изображения и публикуват всичко автоматично — с човешка проверка точно там, където е нужна.",
+        highlights: [
+          "Генериране на новини с AI в голям мащаб",
+          "Автоматично публикуване в сайта и каналите",
+          "AI изображения за всяка статия",
+          "Редакторски контрол и защита на качеството",
+        ],
+        tags: ["LLM", "Автоматизация", "AI изображения", "Публикуване"],
+        url: SITE_URLS.punto,
+        urlLabel: "12punto.com.tr",
+        linkKind: "site",
+        logo: LOGOS.punto,
+      },
+      {
         id: "brush-past",
         name: "Brush Past",
         location: "Лондон, Великобритания",
@@ -720,25 +765,26 @@ export const bg: Dictionary = {
         logo: LOGOS.askemo,
       },
       {
-        id: "12punto",
-        name: "12punto",
-        location: "Истанбул, Турция",
-        category: "AI автоматизации · Медия",
+        id: "tdr",
+        name: "Telephone Domain Register",
+        location: "България",
+        category: "Телеком · Киберсигурност · Автоматизация",
         summary:
-          "Едно от най-старите и най-големи новинарски издания в Турция, с редакция, която никога не спира.",
+          "Мащабен телеком и киберсигурност проект, който изгражда цяла интернет екосистема с приложения, работещи през телефонната мрежа — основата на Safe Internet на TDR.",
         description:
-          "Проектираме и поддържаме редица AI автоматизации за редакцията им: процеси, които генерират новинарски статии от входящи източници, създават подходящи изображения и публикуват всичко автоматично — с човешка проверка точно там, където е нужна.",
+          "Работим по сложна мрежа и киберсигурност на телефонната мрежа: изграждаме цялата интернет система, с която приложенията да минават през телефонната мрежа, допринасяме за нейната сигурност и създаваме различни системи за автоматизация и уеб приложения за техния Safe Internet. Още на пред-релийз ниво проектът е оценен на над 4 милиона евро.",
         highlights: [
-          "Генериране на новини с AI в голям мащаб",
-          "Автоматично публикуване в сайта и каналите",
-          "AI изображения за всяка статия",
-          "Редакторски контрол и защита на качеството",
+          "Сложна мрежова архитектура през телефонната мрежа",
+          "Киберсигурност на телеком инфраструктурата",
+          "Цялостна интернет система с приложения през телефонната мрежа",
+          "Системи за автоматизация и уеб приложения за Safe Internet",
         ],
-        tags: ["LLM", "Автоматизация", "AI изображения", "Публикуване"],
-        url: SITE_URLS.punto,
-        urlLabel: "12punto.com.tr",
+        tags: ["Телеком", "Мрежи", "Киберсигурност", "Автоматизация", "Уеб приложения"],
+        url: SITE_URLS.tdr,
+        urlLabel: "tdrbg.net",
         linkKind: "site",
-        logo: LOGOS.punto,
+        logo: LOGOS.tdr,
+        status: "Пред-релийз · оценен на над 4 млн. €",
       },
       {
         id: "axiom",
