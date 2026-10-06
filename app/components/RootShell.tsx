@@ -2,6 +2,7 @@ import { Geist, Unbounded } from "next/font/google";
 import Script from "next/script";
 import type { Metadata, Viewport } from "next";
 import type { Dictionary, Locale } from "../i18n/dictionaries";
+import { LOCALE_META, alternateLanguages, localePath } from "../i18n/dictionaries";
 import { CONTACT } from "./contactLinks";
 import "../globals.css";
 
@@ -22,16 +23,25 @@ export const SITE_URL = "https://avoex.vercel.app";
 
 export const viewport: Viewport = { themeColor: "#0a0d1c" };
 
+const KEYWORDS: Record<Locale, string[]> = {
+  en: ["Avoex", "web design", "web development", "custom software", "AI automation", "e-commerce", "software studio", "SaaS development", "UI/UX"],
+  bg: ["Avoex", "изработка на уебсайт", "уеб дизайн", "софтуер по поръчка", "AI автоматизации", "онлайн магазин", "софтуерна компания", "UI/UX"],
+  nl: ["Avoex", "webdesign", "webontwikkeling", "maatwerksoftware", "AI-automatisering", "e-commerce", "softwarestudio", "SaaS-ontwikkeling", "UI/UX"],
+  de: ["Avoex", "Webdesign", "Webentwicklung", "Individualsoftware", "KI-Automatisierung", "E-Commerce", "Softwarestudio", "SaaS-Entwicklung", "UI/UX"],
+  es: ["Avoex", "diseño web", "desarrollo web", "software a medida", "automatización con IA", "e-commerce", "estudio de software", "desarrollo SaaS", "UI/UX"],
+};
+
 export function buildMetadata(t: Dictionary): Metadata {
-  const path = t.locale === "en" ? "/" : "/bg";
+  const path = localePath(t.locale);
+  const alternateLocale = Object.values(LOCALE_META)
+    .map((m) => m.ogLocale)
+    .filter((og) => og !== t.meta.ogLocale);
+
   return {
     metadataBase: new URL(SITE_URL),
     title: t.meta.title,
     description: t.meta.description,
-    keywords:
-      t.locale === "en"
-        ? ["Avoex", "web design", "web development", "custom software", "AI automation", "e-commerce", "software studio", "SaaS development", "UI/UX"]
-        : ["Avoex", "изработка на уебсайт", "уеб дизайн", "софтуер по поръчка", "AI автоматизации", "онлайн магазин", "софтуерна компания", "UI/UX"],
+    keywords: KEYWORDS[t.locale],
     authors: [{ name: "Avoex" }],
     creator: "Avoex",
     publisher: "Avoex",
@@ -43,13 +53,13 @@ export function buildMetadata(t: Dictionary): Metadata {
     icons: { icon: "/logo.png", apple: "/logo.png", shortcut: "/logo.png" },
     alternates: {
       canonical: path,
-      languages: { en: "/", bg: "/bg", "x-default": "/" },
+      languages: alternateLanguages(),
     },
     openGraph: {
       type: "website",
       url: path,
       locale: t.meta.ogLocale,
-      alternateLocale: t.locale === "en" ? ["bg_BG"] : ["en_US"],
+      alternateLocale,
       title: t.meta.title,
       description: t.meta.description,
       siteName: "Avoex",
@@ -75,7 +85,7 @@ function structuredData(t: Dictionary) {
     foundingDate: "2024",
     email: CONTACT.email,
     address: { "@type": "PostalAddress", addressLocality: "Sofia", addressCountry: "BG" },
-    areaServed: ["GB", "NL", "TR", "BG", "Worldwide"],
+    areaServed: ["GB", "NL", "TR", "BG", "DE", "ES", "Worldwide"],
     knowsAbout: ["Web Development", "Web Design", "E-commerce", "Custom Software", "AI Automation", "UI/UX Design", "DevOps", "Cybersecurity"],
     founder: { "@type": "Person", name: "Angel Valkov", jobTitle: "CEO" },
     employee: t.team.members.map((m) => ({ "@type": "Person", name: m.name, jobTitle: m.role })),

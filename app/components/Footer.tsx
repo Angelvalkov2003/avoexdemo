@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Dictionary } from "../i18n/dictionaries";
+import { LOCALES, LOCALE_META } from "../i18n/dictionaries";
 import { CONTACT } from "./contactLinks";
 import { Facebook, LinkedIn, LogoMark, Mail, WhatsApp } from "./icons";
 
@@ -55,15 +56,25 @@ export default function Footer({ t }: { t: Dictionary }) {
                 </a>
               ))}
             </div>
-            <div className="mt-6 flex items-center gap-2 text-sm text-white/45">
-              {t.footer.language}:
-              <Link href="/" hrefLang="en" className={t.locale === "en" ? "font-semibold text-white" : "hover:text-white"}>
-                English
-              </Link>
-              <span>/</span>
-              <Link href="/bg" hrefLang="bg" className={t.locale === "bg" ? "font-semibold text-white" : "hover:text-white"}>
-                Български
-              </Link>
+            <div className="mt-6 text-sm text-white/45">
+              <span className="mb-2 block">{t.footer.language}:</span>
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                {LOCALES.map((code, index) => {
+                  const meta = LOCALE_META[code];
+                  return (
+                    <span key={code} className="inline-flex items-center gap-2">
+                      {index > 0 && <span className="text-white/25">/</span>}
+                      <Link
+                        href={meta.path}
+                        hrefLang={code}
+                        className={t.locale === code ? "font-semibold text-white" : "hover:text-white"}
+                      >
+                        {meta.nativeLabel}
+                      </Link>
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

@@ -31,7 +31,14 @@ export async function POST(request: Request) {
         const serviceType = String(body.serviceType ?? '').trim();
         const budget = String(body.budget ?? '').trim();
         const description = String(body.description ?? '').trim();
-        const locale = body.locale === 'bg' ? 'BG' : 'EN';
+        const localeMap: Record<string, string> = {
+            en: 'EN',
+            bg: 'BG',
+            nl: 'NL',
+            de: 'DE',
+            es: 'ES',
+        };
+        const locale = localeMap[String(body.locale ?? '')] ?? 'EN';
 
         if (!email || !serviceType || !description) {
             return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });

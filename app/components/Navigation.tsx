@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import type { Dictionary, Locale } from "../i18n/dictionaries";
+import { LOCALES, LOCALE_META, localePath } from "../i18n/dictionaries";
 import { LogoMark } from "./icons";
 
 export default function Navigation({
@@ -13,7 +15,9 @@ export default function Navigation({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const home = locale === "en" ? "/" : "/bg";
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
+  const home = localePath(locale);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -25,6 +29,24 @@ export default function Navigation({
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
+
+  useEffect(() => {
+    if (!langOpen) return;
+    const onPointerDown = (event: MouseEvent) => {
+      if (!langRef.current?.contains(event.target as Node)) {
+        setLangOpen(false);
+      }
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setLangOpen(false);
+    };
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [langOpen]);
 
   const links = [
     { href: "#services", label: nav.services },
@@ -61,14 +83,45 @@ export default function Navigation({
         </div>
 
         <div className="flex items-center gap-2">
-          <a
-            href={nav.switchHref}
-            hrefLang={locale === "en" ? "bg" : "en"}
-            aria-label={nav.switchAria}
-            className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold tracking-wider text-white/80 transition-colors hover:border-peri hover:text-white"
-          >
-            {nav.switchLabel}
-          </a>
+          <div className="relative" ref={langRef}>
+            <button
+              type="button"
+              onClick={() => setLangOpen((value) => !value)}
+              aria-label={nav.switchAria}
+              aria-expanded={langOpen}
+              aria-haspopup="listbox"
+              className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold tracking-wider text-white/80 transition-colors hover:border-peri hover:text-white"
+            >
+              {LOCALE_META[locale].code}
+            </button>
+            {langOpen && (
+              <div
+                role="listbox"
+                aria-label={nav.switchAria}
+                className="absolute right-0 mt-2 min-w-[10.5rem] overflow-hidden rounded-2xl border border-white/10 bg-ink/95 py-1 shadow-2xl backdrop-blur-xl"
+              >
+                {LOCALES.map((code) => {
+                  const meta = LOCALE_META[code];
+                  const active = code === locale;
+                  return (
+                    <Link
+                      key={code}
+                      href={meta.path}
+                      hrefLang={code}
+                      role="option"
+                      aria-selected={active}
+                      onClick={() => setLangOpen(false)}
+                      className={`block px-4 py-2.5 text-sm transition-colors ${
+                        active ? "bg-white/10 font-semibold text-white" : "text-white/70 hover:bg-white/5 hover:text-white"
+                      }`}
+                    >
+                      {meta.nativeLabel}
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
           <a
             href="#contact"
             className="hidden rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-peri sm:inline-block"
@@ -112,6 +165,27 @@ export default function Navigation({
               {l.label}
             </a>
           ))}
+          <div className="mt-4 flex flex-wrap gap-2">
+            {LOCALES.map((code) => {
+              const meta = LOCALE_META[code];
+              const active = code === locale;
+              return (
+                <Link
+                  key={code}
+                  href={meta.path}
+                  hrefLang={code}
+                  onClick={() => setOpen(false)}
+                  className={`rounded-full border px-3 py-1.5 text-xs font-semibold tracking-wider transition-colors ${
+                    active
+                      ? "border-white bg-white text-ink"
+                      : "border-white/15 text-white/70 hover:border-peri hover:text-white"
+                  }`}
+                >
+                  {meta.code}
+                </Link>
+              );
+            })}
+          </div>
           <a
             href="#contact"
             onClick={() => setOpen(false)}

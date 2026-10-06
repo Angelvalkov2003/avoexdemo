@@ -1,157 +1,14 @@
-export type Locale = "en" | "bg";
-
-export type ServiceId = "web" | "software" | "ai" | "brand";
-export interface ProjectLogo {
-  src: string;
-  background: string;
-  width: number;
-  height: number;
-}
-
-export interface FeaturedProject {
-  id: string;
-  name: string;
-  location: string;
-  category: string;
-  summary: string;
-  description: string;
-  highlights: string[];
-  tags: string[];
-  url: string;
-  urlLabel: string;
-  linkKind: "site" | "code";
-  logo: ProjectLogo;
-  status?: string;
-}
-
-export interface Dictionary {
-  locale: Locale;
-  meta: { title: string; description: string; ogLocale: string };
-  nav: {
-    services: string;
-    work: string;
-    team: string;
-    process: string;
-    faq: string;
-    cta: string;
-    switchLabel: string;
-    switchHref: string;
-    switchAria: string;
-    menu: string;
-    close: string;
-  };
-  hero: {
-    eyebrow: string;
-    titleStart: string;
-    titleHighlight: string;
-    titleEnd: string;
-    subtitle: string;
-    primary: string;
-    secondary: string;
-    stats: { value: string; label: string }[];
-  };
-  clients: { label: string };
-  services: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    items: { id: ServiceId; title: string; description: string; bullets: string[] }[];
-  };
-  work: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    visitSite: string;
-    viewCode: string;
-    featured: FeaturedProject[];
-    moreTitle: string;
-    moreSubtitle: string;
-    more: { name: string; url: string; category: string; description: string }[];
-  };
-  why: {
-    eyebrow: string;
-    title: string;
-    items: { title: string; description: string }[];
-  };
-  team: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    experienceLabel: string;
-    members: {
-      name: string;
-      role: string;
-      photo: string;
-      experience: string;
-      education: string[];
-      bio: string;
-      skills: string[];
-    }[];
-  };
-  process: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    steps: { title: string; description: string; meta: string }[];
-    guarantees: string[];
-  };
-  faq: { eyebrow: string; title: string; items: { q: string; a: string }[] };
-  contact: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    directTitle: string;
-    responseNote: string;
-    form: {
-      name: string;
-      namePlaceholder: string;
-      email: string;
-      emailPlaceholder: string;
-      service: string;
-      services: { value: string; label: string }[];
-      budget: string;
-      budgetPlaceholder: string;
-      message: string;
-      messagePlaceholder: string;
-      submit: string;
-      sending: string;
-      success: string;
-      error: string;
-    };
-  };
-  footer: { tagline: string; founded: string; rights: string; language: string };
-}
-
-const SITE_URLS = {
-  brushPast: "https://brush-past.vercel.app/",
-  askemo: "https://askemo.nl/",
-  punto: "https://12punto.com.tr/",
-  tdr: "https://tdrbg.net/",
-  axiom: "https://github.com/Milenchev/axiom-design-system",
-  paperok: "https://www.paperok.bg/",
-  nova: "https://novaartspace.bg/",
-  arthouse: "https://www.arthouse94.com/",
-  oneOverFifty: "https://oneoverfifty.vercel.app/",
-  mood: "https://mood-shisha-bar.vercel.app/bg",
-  greenYard: "https://bg-green-yard.vercel.app/en",
-  riolit: "https://www.riolit.bg/",
-  pureSpace: "https://purespace.website/",
-};
-
-const LOGOS: Record<string, ProjectLogo> = {
-  brushPast: { src: "/logos/brushpast-trimmed.png", background: "#cba678", width: 251, height: 102 },
-  askemo: { src: "/logos/askemo.webp", background: "#ffffff", width: 600, height: 315 },
-  punto: { src: "/logos/12punto-trimmed.png", background: "#272727", width: 400, height: 112 },
-  tdr: { src: "/logos/tdr-trimmed.png", background: "#ffffff", width: 325, height: 300 },
-  axiom: { src: "/logos/axiom-trimmed.png", background: "#ffffff", width: 186, height: 152 },
-};
-
-const PHOTOS = {
-  angel: "/people/angel.png",
-  milenchev: "/people/GeorgiMilenchev.png",
-  kerkelov: "/people/Georgikerkelov.jpg",
-  stiliyan: "/people/stiliyanStefanov.png",
-};
+export type { Locale } from "./locales";
+export { LOCALES, LOCALE_META, localePath, alternateLanguages } from "./locales";
+export type { ProjectLogo } from "./assets";
+export { SITE_URLS, LOGOS, PHOTOS } from "./assets";
+export type { Dictionary, FeaturedProject, ServiceId } from "./types";
+import type { Locale } from "./locales";
+import { SITE_URLS, LOGOS, PHOTOS } from "./assets";
+import type { Dictionary } from "./types";
+import { nl } from "./nl";
+import { de } from "./de";
+import { es } from "./es";
 
 export const en: Dictionary = {
   locale: "en",
@@ -170,7 +27,7 @@ export const en: Dictionary = {
     cta: "Start a project",
     switchLabel: "BG",
     switchHref: "/bg",
-    switchAria: "Превключи на български",
+    switchAria: "Choose language",
     menu: "Open menu",
     close: "Close menu",
   },
@@ -615,7 +472,7 @@ export const bg: Dictionary = {
     cta: "Започни проект",
     switchLabel: "EN",
     switchHref: "/",
-    switchAria: "Switch to English",
+    switchAria: "Избери език",
     menu: "Отвори менюто",
     close: "Затвори менюто",
   },
@@ -1042,4 +899,6 @@ export const bg: Dictionary = {
   },
 };
 
-export const dictionaries: Record<Locale, Dictionary> = { en, bg };
+export { nl, de, es };
+
+export const dictionaries: Record<Locale, Dictionary> = { en, bg, nl, de, es };
