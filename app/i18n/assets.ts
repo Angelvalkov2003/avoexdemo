@@ -6,12 +6,13 @@ export interface ProjectLogo {
 }
 
 export const SITE_URLS = {
-  brushPast: "https://brush-past.vercel.app/",
+  brushPast: "https://brushpast.org/",
   askemo: "https://askemo.nl/",
   punto: "https://12punto.com.tr/",
   tdr: "https://tdrbg.net/",
   axiom: "https://github.com/Milenchev/axiom-design-system",
   paperok: "https://www.paperok.bg/",
+  newChance: "https://www.newchance96.com/",
   nova: "https://novaartspace.bg/",
   arthouse: "https://www.arthouse94.com/",
   oneOverFifty: "https://oneoverfifty.vercel.app/",

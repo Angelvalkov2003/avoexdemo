@@ -132,7 +132,7 @@ export const es: Dictionary = {
         summary:
           "Una empresa social de Londres que ayuda a personas afectadas por la falta de hogar y la adicción a convertir la creatividad en arte, productos y negocios propios.",
         description:
-          "Diseñamos el complejo sistema interno que gestiona toda la organización — creadores, talleres, productos, pedidos e impacto social — en un solo lugar. En paralelo estamos creando su identidad de marca, sitio web y tienda online, ahora en su fase final.",
+          "Diseñamos el complejo sistema interno que gestiona toda la organización — creadores, talleres, productos, pedidos e impacto social — en un solo lugar. En paralelo creamos su identidad de marca, sitio web y tienda online, ya finalizados y en funcionamiento.",
         highlights: [
           "Sistema de operaciones y gestión de extremo a extremo",
           "Seguimiento de creadores, talleres e impacto",
@@ -141,10 +141,10 @@ export const es: Dictionary = {
         ],
         tags: ["Next.js", "Sistema de gestión", "Identidad de marca", "E-commerce"],
         url: SITE_URLS.brushPast,
-        urlLabel: "brush-past.vercel.app",
+        urlLabel: "brushpast.org",
         linkKind: "site",
         logo: LOGOS.brushPast,
-        status: "Sitio web en fase final",
+        status: "Finalizado · En línea",
       },
       {
         id: "askemo",
@@ -220,6 +220,13 @@ export const es: Dictionary = {
         category: "E-commerce · Marca · Marketing",
         description:
           "Tienda online sobre una plantilla a medida, con imagen de marca completa, configuración de e-commerce y estrategia de marketing.",
+      },
+      {
+        name: "New Chance",
+        url: SITE_URLS.newChance,
+        category: "Construcción · Inmobiliaria",
+        description:
+          "Sitio web para una constructora búlgara — pistas deportivas, construcción, reformas e inmobiliaria. Hecho con Next.js en Vercel.",
       },
       {
         name: "Nova Art Space",

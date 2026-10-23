@@ -132,7 +132,7 @@ export const nl: Dictionary = {
         summary:
           "Een Londense social enterprise die mensen die getroffen zijn door dakloosheid en verslaving helpt creativiteit om te zetten in kunst, producten en bedrijven die van hen zijn.",
         description:
-          "We bouwden het complexe interne systeem dat de hele organisatie volgt en beheert — creators, workshops, producten, bestellingen en sociale impact — op één plek. Daarnaast werken we aan hun merkidentiteit, website en webshop, die nu in de eindfase zit.",
+          "We bouwden het complexe interne systeem dat de hele organisatie volgt en beheert — creators, workshops, producten, bestellingen en sociale impact — op één plek. Daarnaast bouwden we hun merkidentiteit, website en webshop, die nu afgerond en live zijn.",
         highlights: [
           "End-to-end operations- & managementsysteem",
           "Creator-, workshop- en impacttracking",
@@ -141,10 +141,10 @@ export const nl: Dictionary = {
         ],
         tags: ["Next.js", "Managementsysteem", "Merkidentiteit", "E-commerce"],
         url: SITE_URLS.brushPast,
-        urlLabel: "brush-past.vercel.app",
+        urlLabel: "brushpast.org",
         linkKind: "site",
         logo: LOGOS.brushPast,
-        status: "Website in eindfase",
+        status: "Afgerond · Live",
       },
       {
         id: "askemo",
@@ -220,6 +220,13 @@ export const nl: Dictionary = {
         category: "E-commerce · Merk · Marketing",
         description:
           "Webshop op een maatwerk template, met volledige merkidentiteit, e-commerce setup en marketingstrategie.",
+      },
+      {
+        name: "New Chance",
+        url: SITE_URLS.newChance,
+        category: "Bouw · Vastgoed",
+        description:
+          "Website voor een Bulgaars bouwbedrijf — sportvelden, bouw, renovaties en vastgoed. Gebouwd met Next.js op Vercel.",
       },
       {
         name: "Nova Art Space",
